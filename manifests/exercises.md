@@ -9,3 +9,6 @@ Concepts to present:
 
 
 kubectl run -i --tty busybox --image=busybox -- sh
+
+Full qualified service name:
+<service-name>.default.svc.cluster.local

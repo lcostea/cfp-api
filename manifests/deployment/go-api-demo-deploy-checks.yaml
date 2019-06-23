@@ -5,7 +5,7 @@ metadata:
   labels:
     app: go-api-demo-checks
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: go-api-demo-checks
@@ -23,4 +23,5 @@ spec:
             port: 3000
           initialDelaySeconds: 5
           periodSeconds: 10
+          #timeoutSeconds: 2
 
