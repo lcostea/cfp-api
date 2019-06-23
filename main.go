@@ -57,7 +57,7 @@ func main() {
 	r.HandleFunc("/callforpapers", getOpenCallForPapers)
 	r.HandleFunc("/ready", ready)
 	r.HandleFunc("/healthy", healthy)
-
+	logger.Info("Starting go demo api on port 3000!")
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		loggerStd.Fatal(err)
 	}
