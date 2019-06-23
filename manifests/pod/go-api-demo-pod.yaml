@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-api-demo
+  labels:
+    app: go-api-demo
+spec:
+  containers:
+  - name: go-api-demo
+    image: lcostea/go-api-demo:0.1.0
