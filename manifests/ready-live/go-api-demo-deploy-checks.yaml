@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-api-demo-deploy-checks
+  name: go-api-demo-checks
   labels:
     app: go-api-demo-checks
 spec:

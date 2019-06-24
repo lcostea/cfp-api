@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-api-demo-config
+  labels:
+    app: go-api-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-api-demo
+  template:
+    metadata:
+      labels:
+        app: go-api-demo
+    spec:
+      containers:
+      - name: go-api-demo
+        image: lcostea/go-api-demo:0.1.0
+        env:
+        - name: CONNECTION_TIMEOUT
+          valueFrom:
+            configMapKeyRef:
+              name: go-api-demo
+              key: connectionTimeout
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: go-api-demo
+              key: log_level
+

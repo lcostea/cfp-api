@@ -7,10 +7,17 @@ import (
 	"github.com/lcostea/cfp-api/pkg/conference"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
 func getOpenCallForPapers(w http.ResponseWriter, r *http.Request) {
+	logLevel, logLevelExists := os.LookupEnv("LOG_LEVEL")
+
+	if logLevelExists {
+		logger.Info("Log level is " + logLevel)
+	}
+
 	logger.Info("Received a call to /callforpapers ")
 	var cfps [2]conference.CallForPapers
 	cfps[0] = conference.CallForPapers{

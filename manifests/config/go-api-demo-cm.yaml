@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-api-demo-config
+data:
+  connectionTimeout: 10 
+  log_level: INFO
