@@ -56,6 +56,11 @@ Use the checks deployment from above
 
 --cleanup busybox
 
+`kubectl port-forward svc/go-api-demo 8080:80`
+
+try to access:
+http://localhost:8080/callforpapers
+
 
 Fully qualified service name:
 go-api-demo.default.svc.cluster.local
@@ -93,15 +98,16 @@ Git-sync sidecar
 `kubectl exec -it <multi-deploy-pod-name> /bin/sh`
 
 
-
 ## Pod autoscaling: hpa
 
 Metrics server and heapster are already installed on AKS
 `kubectl get deployments --all-namespaces`
 
-TODO: prepare the 
 
-## Ingress??
+## Ingress
+
+After creating an ingress controller (like nginx), then we can create ingress rules
+https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 
 
