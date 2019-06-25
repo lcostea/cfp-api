@@ -1,4 +1,4 @@
-### Prereq
+## Prereq
 
 AKS API Server:
 https://cniasi-workshop-june-dns-ae480410.hcp.northeurope.azmk8s.io
@@ -23,7 +23,7 @@ OR
 
 `kubectl config set-context $(kubectl config current-context) --namespace=liviucostea`
 
-### Pod and deployments
+## Pod and deployments
 
 `kubectl apply -f manifests/deployment/go-api-demo-pod.yaml`
 
@@ -37,16 +37,14 @@ Upgrade to a deployment, includes a replicaset
 
 `kubectl apply -f manifests/deployment/go-api-demo-deploy.yaml`
 
-TODO: make a rollout for version 0.1.1 then rollback to version 0.1.0
 
-
-### Readyness and liveness checks
+## Readyness and liveness checks
 
 `kubectl apply -f manifests/ready-live/go-api-demo-deploy-checks.yaml`
 
 --increase timeout; add readyness
 
-### Services
+## Services
 
 Use the checks deployment from above
 
@@ -59,16 +57,34 @@ Use the checks deployment from above
 --cleanup busybox
 
 
-Full qualified service name:
-<service-name>.default.svc.cluster.local
+Fully qualified service name:
+go-api-demo.default.svc.cluster.local
 
-TODO: create the service, apply the busybox and then make some queries and see they are going to different pods
+## Configuration: configmap and secret
 
-### Configuration: configmap and secret
+create the deployment, pod will give config error:
 
+`kubectl apply -f manifests/config/go-api-demo-deploy-config.yaml`
 
+creates the cm:
 
-### Multi container pods
+`kubectl apply -f manifests/config/go-api-demo-cm.yaml`
+
+## Rollout and rollback
+
+modify image in deploy/go-api-demo-config for 0.1.1 and apply
+`kubectl get replicaset`
+
+`kubectl rollout status deploy/go-api-demo-config`
+
+`kubectl rollout history deploy/go-api-demo-config`
+
+undo to the previous deploy:
+
+`kubectl rollout undo deploy/go-api-demo-config`
+`kubectl get replicaset`
+
+## Multi container pods
 
 Git-sync sidecar
 
@@ -78,12 +94,14 @@ Git-sync sidecar
 
 
 
-### Pod autoscaling: hpa
+## Pod autoscaling: hpa
 
 Metrics server and heapster are already installed on AKS
 `kubectl get deployments --all-namespaces`
 
-### Ingress??
+TODO: prepare the 
+
+## Ingress??
 
 
 
