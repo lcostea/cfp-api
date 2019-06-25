@@ -37,6 +37,8 @@ Upgrade to a deployment, includes a replicaset
 
 `kubectl apply -f manifests/deployment/go-api-demo-deploy.yaml`
 
+TODO: make a rollout for version 0.1.1 then rollback to version 0.1.0
+
 
 ### Readyness and liveness checks
 
@@ -46,8 +48,21 @@ Upgrade to a deployment, includes a replicaset
 
 ### Services
 
+Use the checks deployment from above
+
+`kubectl apply -f ./manifests/ready-live/go-api-demo-deploy-checks.yaml`
+
+`k apply -f manifests/service/go-api-demo-service.yaml`
+
+`kubectl run -it busybox --image=busybox --restart=Never /bin/sh`
+
+--cleanup busybox
+
+
 Full qualified service name:
 <service-name>.default.svc.cluster.local
+
+TODO: create the service, apply the busybox and then make some queries and see they are going to different pods
 
 ### Configuration: configmap and secret
 
