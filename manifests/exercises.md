@@ -1,6 +1,10 @@
 ### Prereq
 
-Start the aks/minikube
+AKS API Server:
+https://cniasi-workshop-june-dns-ae480410.hcp.northeurope.azmk8s.io
+
+
+Current context
 
 `kubectl config use context minikube`
 
@@ -33,10 +37,6 @@ Upgrade to a deployment, includes a replicaset
 
 `kubectl apply -f manifests/deployment/go-api-demo-deploy.yaml`
 
-### Multi container pods
-
-TODO:--declarative spec, add one more container
-https://matthewpalmer.net/kubernetes-app-developer/articles/multi-container-pod-design-patterns.html
 
 ### Readyness and liveness checks
 
@@ -45,12 +45,30 @@ https://matthewpalmer.net/kubernetes-app-developer/articles/multi-container-pod-
 --increase timeout; add readyness
 
 ### Services
-### Configuration: configmap and secret
-### Pod autoscaling: hpa
-### Ingress??
-
-
-kubectl run -i --tty busybox --image=busybox -- sh
 
 Full qualified service name:
 <service-name>.default.svc.cluster.local
+
+### Configuration: configmap and secret
+
+
+
+### Multi container pods
+
+Git-sync sidecar
+
+`kubectl apply -f manifests/deployment/go-api-demo-multi.yaml`
+
+`kubectl exec -it <multi-deploy-pod-name> /bin/sh`
+
+
+
+### Pod autoscaling: hpa
+
+Metrics server and heapster are already installed on AKS
+`kubectl get deployments --all-namespaces`
+
+### Ingress??
+
+
+
